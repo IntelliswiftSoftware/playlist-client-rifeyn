@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { login } from '../../constants/commonFunctions';
 import { loadingActions } from '../../redux';
+import RiFeyn from '../../images/RiFeyn Final-01.png';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -26,9 +27,10 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    background: '#121212',
+    background: '#121212 !important',
     '&:hover button': {
       color: 'black',
+      backgroundColor: '#282828 !important'
     },
   },
   login: {
@@ -96,9 +98,7 @@ const Login = (props) => {
     <Container component="main" maxWidth="xs" className={classes.login}>
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          {/* <LockOutlinedIcon /> */}
-        </Avatar>
+        <img src={RiFeyn} style={{width: '157px', height: '50px'}} />
         <Typography component="h1" variant="h5">
         <span style = {{color: "lightgray"}}>Sign in</span>
         </Typography>

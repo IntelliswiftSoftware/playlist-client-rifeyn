@@ -3,18 +3,14 @@ import './songList.scss';
 import Song from './song';
 
 const SongList = (props) =>  {
-  const { list,userId } = props;
-
+  const { list,userId, message } = props;
+  console.log('message',message);
     return (
       <div className="listview">
-        
-        {list.length ?
-         (list || []).map((item, index) => (
+         {(list || []).map((item, index) => (
             <Song item={item} key={index} userId={userId}/>
-          ))
-          :
-          'Loading...'
-        }
+          ))}
+          {message && <span>{message}</span>}
       </div>
     )
 }

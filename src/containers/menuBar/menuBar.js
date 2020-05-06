@@ -107,8 +107,8 @@ const ResponsiveDrawer = (props) => {
     setMenus(name);
   }
 
-  const searchSongs = (searchResult) => {
-    setMenus(<SearchResult list={searchResult} />);
+  const searchSongs = (searchResult, meassage) => {
+    setMenus(<SearchResult list={searchResult} meassage={meassage}/>);
   }
 
   const drawer = (

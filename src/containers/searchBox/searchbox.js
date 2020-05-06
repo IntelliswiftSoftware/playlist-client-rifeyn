@@ -81,7 +81,11 @@ export default function Search(props) {
       }`
       }).then((response) => {
           setSearchsonglist(response.data.data.search);
-          props.searchSongs(response.data.data.search);
+          if(response.data.data.search.length > 0) {
+            props.searchSongs(response.data.data.search);
+          }else {
+            props.searchSongs(response.data.data.search, 'No Record Found');
+          }
     }).catch((error) => {
       console.log('error',error)
     });

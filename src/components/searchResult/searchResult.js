@@ -30,7 +30,7 @@ const SearchResult = (props) => {
                   <Row>
                     <Col sm="12">
                       {/* {<PlaylistBreadcrumb items={['SongList Library', 'Recently Played Song']} />} */}
-                      <SongList list={props.list} />
+                      <SongList list={props.list} message={props.meassage} />
                     </Col>
                   </Row>
                 </TabPane>

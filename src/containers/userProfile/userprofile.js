@@ -54,7 +54,7 @@ const UserProfile = (props) => {
           {auth && (
             <div className={classes.iconRight}>
               <span>{`${userDetails.firstname} ${userDetails.lastname}`}</span>
-              <ArrowDropDownIcon />
+              {/* <ArrowDropDownIcon /> */}
               <IconButton
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
