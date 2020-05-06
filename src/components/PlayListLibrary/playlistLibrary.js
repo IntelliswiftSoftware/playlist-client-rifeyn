@@ -111,7 +111,6 @@ const PlayListLibraby = (props) => {
   }
 
   const addPlaylist = (playlistName) => {
-    const userId = 1;
     createUserPlayList({
       query: `mutation{
           addPlaylist(title: "${playlistName}", userId:${userId}){
