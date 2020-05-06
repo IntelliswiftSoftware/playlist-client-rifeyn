@@ -67,6 +67,7 @@ export default function Search(props) {
          low
          mid
          high
+         basepath
        },
        artist{
         firstname
