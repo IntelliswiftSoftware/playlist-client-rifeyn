@@ -13,79 +13,80 @@
         margin-left: 0;
         margin-right: 0;
         margin-bottom: 15px;
-    }
-    .list:hover h3{
-        color: #fff;
-    }
-    
-    .list .thumbnail{
-        width: 80px;
-        height: 60px;
-        border-radius: 7px;
-        -webkit-border-radius: 7px;
-        -moz-border-radius: 7px;
-        -ms-border-radius: 7px;
-        -o-border-radius: 7px;
-        margin-right: 8px;
-        overflow: hidden;
-    }
-    .list .thumbnail img{
-        width: 100%;
-        height: 60px;
-        border-radius: 7px;
-        -webkit-border-radius: 7px;
-        -moz-border-radius: 7px;
-        -ms-border-radius: 7px;
-        -o-border-radius: 7px;
-        margin-right: 8px;
-        vertical-align: bottom;
-    }
-    
-    .list .title h3{
-        font-size: 15px;
-        font-weight: 600;
-    }
-    .list .title h3 span{
-        font-size: 12px;
-        display: block;
-        margin-top: 4px;
-        font-weight: normal;
-    }
-    .list .tracktime{
-        font-size: 12px;
-        text-align: center;
-    }
-    .list .actions{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .list .actions > div{
-        width: 30px;
-        height: 30px;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-    }
-    .list .actions .fav{
-        cursor: pointer;
-    }
-    .list .actions .fav:hover i, .list .actions .fav.active i{
-        color: red;
-    }
-    
-    .list .actions .dropdown-item {
-        padding: .25rem 0.5rem;
-        font-size: 13px;
-    }
-    .list .actions .dropdown-item:hover {
-        background-color: #282828;
-        color: #00E5E5;
-    }
-    .list .dropdown-menu {
-        background-color: #959696;
+
+        .thumbnail{
+            width: 80px;
+            height: 60px;
+            border-radius: 7px;
+            -webkit-border-radius: 7px;
+            -moz-border-radius: 7px;
+            -ms-border-radius: 7px;
+            -o-border-radius: 7px;
+            margin-right: 8px;
+            overflow: hidden;
+
+            img{
+                width: 100%;
+                height: 60px;
+                border-radius: 7px;
+                -webkit-border-radius: 7px;
+                -moz-border-radius: 7px;
+                -ms-border-radius: 7px;
+                -o-border-radius: 7px;
+                margin-right: 8px;
+                vertical-align: bottom;
+            }
+        }
+        .title h3{
+            font-size: 15px;
+            font-weight: 600;
+            span{
+                font-size: 12px;
+                display: block;
+                margin-top: 4px;
+                font-weight: normal;
+            }
+        }
+        .tracktime{
+            font-size: 12px;
+            text-align: center;
+        }
+        .actions {
+            
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            div{
+                width: 30px;
+                height: 30px;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+            
+            .fav{
+                cursor: pointer;
+            }
+            .fav:hover i{
+                color: red;
+            }
+            .fav.active i{
+                color: red;
+            }
+            .dropdown-item {
+                padding: .25rem 0.5rem;
+                font-size: 13px;
+            }
+            .dropdown-item:hover {
+                background-color: #282828;
+                color: #00E5E5;
+            }
+            .dropdown-menu {
+                background-color: #959696;
+            }
+        }
     }
 
     /* Small devices (landscape phones, 576px and up)*/

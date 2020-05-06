@@ -1,22 +1,58 @@
-import React from "react";
+import React from 'react';
+import {
+  Router, Switch, Route, Redirect,
+} from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import Login from '../../components/login';
 import Dashboard from '../../components/dashboard';
-import {
-  Router,
-  Switch,
-  Route,
-} from "react-router-dom";
 
-export default function RoutingHolder (props) {
-const { history } = props;
 
+const RoutingHolder = (props) => {
+
+  const { history, userDetails } = props;
+  const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route
+      {...rest}
+      render={props => (
+        userDetails.id ? (
+          <Component {...props} />
+        )
+          : (
+            <Redirect
+              to={{
+                pathname: '/login',
+                state: { from: props.location },
+              }}
+            />
+          ))}
+    />
+  );
   return (
-    <Router history={history}>
+    <div>
+      <Router history={history}>
         <Switch>
-        <Route path='/' exact={true} render={() => <Login history={history}/>} />
-          <Route path='/login' exact={true} render={() => <Login history={history}/>} />
-          <Route path='/dashboard' exact={true} render={() => <Dashboard history={history}/>} />
+          <PrivateRoute
+            path="/dashboard"
+            component={() => <Dashboard history={history} />}
+          />
+          <Route
+            path="/login"
+            render={() => <Login history={history} />}
+          />
+          <PrivateRoute
+            path="/"
+            exact={true}
+            component={() => <Login history={history} />}
+          />
         </Switch>
-    </Router>
+      </Router>
+    </div>
   );
 }
+
+const mapStateToProps = state => ({
+  userDetails: state.utilsReducer.userDetails
+});
+
+export default connect(mapStateToProps)(RoutingHolder);

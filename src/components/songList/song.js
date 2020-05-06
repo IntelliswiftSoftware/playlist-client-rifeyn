@@ -6,6 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { loadingActions } from '../../redux';
 import { addToPlayedSongs } from '../../constants/commonFunctions';
 import ModalPlaylist from '../../containers/modalPlaylist';
+import crop from '../../images/crop.jpg';
 
 const Song = (props) => {
     
@@ -57,7 +58,7 @@ const Song = (props) => {
     
     return (
         <div className="list no-gutters" key= {key}>
-            <div className="thumbnail"><img src={item.image.basepath+item.image.high} /></div>
+            <div className="thumbnail"><img src={item.image ? item.image.basepath+item.image.high: crop} /></div>
             <div className="title col-5" onClick={() => playSong(item)}>
               <h3>{item.title}<span>{item.artist.firstname}</span></h3>
             </div>

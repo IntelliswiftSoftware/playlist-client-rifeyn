@@ -25,12 +25,13 @@ const ModalCreateNew = (props) => {
       <Modal isOpen={modal} toggle={toggle} className='createmodal'>
         <ModalBody>
             <div>
-              <h4>Create Playlist</h4>
+              <h5>Create Playlist</h5>
               <div className='margin17'>
                 <input type='text' value={playlistName} onChange={(e) => {handleChange(e)}}/>
               </div>
               <div className='margin17'>
-                <Button onClick={addPlaylist} >Create</Button>
+                <Button onClick={addPlaylist} >Create</Button>{' '}
+                <Button onClick={toggle}>Cancel</Button>
               </div>
             </div>
         </ModalBody>

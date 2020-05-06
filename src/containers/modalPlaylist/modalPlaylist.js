@@ -1,8 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Modal, ModalBody } from 'reactstrap';
-import '../modalCreateNew/modalCreateNew.scss';
 
+import '../modalCreateNew/modalCreateNew.scss';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormGroup from '@material-ui/core/FormGroup';
+import { makeStyles } from '@material-ui/core/styles';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { getUserPlayList,addSongInPlaylists } from '../../constants/commonFunctions';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    color: "#6c757d",
+    '& .MuiCheckbox-root': {
+      color: "#6c757d" 
+    }
+  }
+}));
 
 const ModalPlaylist = (props) => {
   const [userPlaylists, setUserPlaylists] = useState([]);
@@ -14,6 +27,7 @@ const ModalPlaylist = (props) => {
     flag,
     userId
   } = props;
+  const classes = useStyles();
 
   useEffect(() => {
     loadPlaylistData(userId);
@@ -112,15 +126,21 @@ const ModalPlaylist = (props) => {
       <Modal isOpen={modal} toggle={() => toggle(song)} className='createmodal'>
         <ModalBody>
           <div>
-            <h4>User Playlist</h4>
+            <h5>Your Playlist</h5>
             <div className='margin17'>
               {(userPlaylists || []).map((item, index) => (
-                <div className='row' key={index}>
-                  <div className='col-lg-12'>
-                    <input type='checkbox' onChange={(e) => handleChanage(item.id, e)} />
-                    <span>{item.title}</span>
-                  </div>
-                </div>
+                    <FormGroup row>
+                    <FormControlLabel
+                      control={
+                        <Checkbox 
+                          onChange={(e) => handleChanage(item.id, e)} 
+                          className={classes.root}
+                          color="default"
+                          />}
+                      label={item.title}
+                      style = {{color: "#6c757d"}}
+                    />
+                    </FormGroup>
               ))}
             </div>
             <div className='margin17'>

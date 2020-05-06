@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { loadingActions } from '../../redux';
+import crop from '../../images/crop.jpg';
 
 const Group = (props) => {
 
@@ -11,7 +12,7 @@ const Group = (props) => {
     }
     return(
       <div className="box" key={key} onClick={() => handleClick(item)}>
-        <img src={item.image.basepath+item.image.high} />
+        <img src={item.image ? item.image.basepath+item.image.high : crop} />
         <p className="title">{item.name || item.title || item.firstname}</p>
       </div>
     )

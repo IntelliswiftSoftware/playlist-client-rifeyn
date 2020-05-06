@@ -3,7 +3,7 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import { searchSongs } from '../../constants/commonFunctions';
 
 import InputBase from '@material-ui/core/InputBase';
-
+import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
 
@@ -18,21 +18,21 @@ const useStyles = makeStyles((theme) => ({
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
-    width: '100%',
+    width: 'auto',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(3),
       width: 'auto',
     },
   },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  // searchIcon: {
+  //   padding: theme.spacing(0, 2),
+  //   height: '100%',
+  //   position: 'absolute',
+  //   pointerEvents: 'none',
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // },
   inputRoot: {
     color: 'inherit',
   },
@@ -94,9 +94,9 @@ export default function Search(props) {
 
   return (
       <div className={classes.search}>
-          <div className={classes.searchIcon} >
+          {/* <div className={classes.searchIcon} >
               <SearchIcon />
-          </div>
+          </div> */}
           {/* <form onSubmit={searchSong}> */}
             <InputBase
                 placeholder="Search…"
@@ -107,7 +107,16 @@ export default function Search(props) {
                 }}
                 inputProps={{ 'aria-label': 'search' }}
             />
-            <button onClick={searchSong}>search</button>
+             <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                onClick={searchSong}
+                //className={classes.menuButton}
+              >
+                <SearchIcon />
+              </IconButton>
+            {/* <button onClick={searchSong}>search</button> */}
           {/* </form> */}
          
       </div>
