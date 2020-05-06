@@ -1,0 +1,96 @@
+
+.headerbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #121212;
+
+
+    .logo-box{
+        display: flex;
+        align-items: center;
+
+        .dropdown{
+            padding: 0px 20px;
+        }
+    }
+
+.profile{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 20px;
+
+    .profile-thumb{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        overflow: hidden;
+        img{
+            width: 100%;
+            height:auto;
+        }
+    }
+
+    .dropdown{
+        padding: 0px 15px;
+         .dropdown-item {
+            padding: .25rem 0.5rem;
+            font-size: 13px;
+        }
+        .dropdown-item:hover {
+            background-color: #282828;
+            color: #00E5E5;
+        }
+    }
+}
+
+#custom-search-input {
+    margin:0;
+    margin-top: 10px;
+    padding: 0;
+}
+
+#custom-search-input .search-query {
+    padding-right: 6px;
+    padding-right: 4px \9;
+    padding-left: 6px;
+    padding-left: 4px \9;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #282828;
+    border: 1px solid #282828;
+}
+
+#custom-search-input button {
+    border: 0;
+    background: none;
+    /** belows styles are working good */
+    padding: 2px 5px;
+    margin-top: 2px;
+    position: relative;
+    left: -28px;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color:#D9230F;
+}
+
+.search-query:focus + button {
+    z-index: 3;   
+}
+
+.main-panel{
+    margin-top: 60px;
+}
+}

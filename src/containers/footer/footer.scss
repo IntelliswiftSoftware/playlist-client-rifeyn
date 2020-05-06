@@ -1,0 +1,345 @@
+.playerbox {
+    background-color: #282828;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    z-index: 99999;
+    border-top: #121212 5px solid;
+   
+    .mediainfo {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        
+        .list {
+            width: 100%;
+            padding: 4px;
+            display: flex;
+            color: #666;
+            align-items: center;
+            justify-content: space-between;
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 0px;
+            
+            .thumbnail {
+                width: 80px;
+                height: 60px;
+            }
+
+            .title {
+                display: none;
+
+                h3{
+                    font-size: 15px;
+                    font-weight: 600;
+                }
+            }
+            .actions {
+                display: none;
+            }
+        }
+    }
+
+   .player {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding-bottom: 10px;
+      
+        .playbuttons{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 5px;
+            font-size: 14px;
+            align-items: flex-end;
+
+            .endtime{
+                text-align: right;
+            }
+
+            .currenttime{
+                display: none;
+            }
+            .endtime{
+                display: none;
+            }
+        }
+        .progress{
+            width: 100%;
+            height: 0.2rem;
+            position: relative;
+            overflow:initial;
+
+            .progress-bar{
+                height: 0.35rem;
+                position: absolute;
+                left: 0px;
+                top: 50%;
+                transform: translateY(-50%);
+                -webkit-transform: translateY(-50%);
+                -moz-transform: translateY(-50%);
+                -ms-transform: translateY(-50%);
+                -o-transform: translateY(-50%);
+            }
+        }
+
+   }
+
+ .controls-list{
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: space-between;
+
+    li{
+        display: flex;
+        align-items: center;
+        a{
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
+            cursor: pointer;
+            display: inline-block;
+
+            img{
+                width: 100%;
+            }
+        }
+    }
+        
+    li.volume-off{
+        display: none;
+    }
+    li.volume-down{
+        display: none;
+    }
+    li.volume-up{
+        display: none;
+    }
+    li.volume-level{
+        display: none;
+    }
+}
+
+.playpause {
+    display: flex;
+    justify-content: center;
+
+    a{
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        overflow: hidden;
+
+        img{
+            width: 100%;
+          }
+    }
+}
+
+.progressholder{
+    width: 100%;
+    position: absolute;
+    top: 0;
+
+    .progress{
+        height: 2px;
+    }
+}
+ 
+.desktoponly{
+    display: none;
+}
+.mobileonly{
+    display: block;
+}
+
+.list .thumbnail{
+    width: 80px;
+    height: 60px;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+    margin-right: 8px;
+    overflow: hidden;
+}
+.list .thumbnail img{
+    width: 100%;
+    height: 60px;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+    margin-right: 8px;
+    vertical-align: bottom;
+}
+
+.list .title h3{
+    font-size: 15px;
+    font-weight: 600;
+}
+.list .title h3 span{
+    font-size: 12px;
+    display: block;
+    margin-top: 4px;
+    font-weight: normal;
+}
+.list .tracktime{
+    font-size: 12px;
+    text-align: center;
+}
+.list .actions{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.list .actions > div{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.list .actions .fav{
+    cursor: pointer;
+}
+.list .actions .share img{
+   width: 100%;
+}
+.list .actions .group img{
+    width: 100%;
+ }
+.list .actions .fav:hover i, .list .actions .fav.active i{
+    color: red;
+}
+
+.list .actions .dropdown-item {
+    padding: .25rem 0.5rem;
+    font-size: 13px;
+}
+.list .actions .dropdown-item:hover {
+    background-color: #282828;
+    color: #00E5E5;
+}
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) { }
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    .desktoponly{
+        display: block;
+    }
+    .mobileonly{
+        display: none;
+    }
+    .conent-box{
+        padding: 25px;
+    }
+    .tab-view .tab-content {
+        padding: 20px;
+    }
+    .tab-view .listview .list{
+        width: 48%;        
+        margin-bottom: 25px;
+    }
+    .list .title h3 {
+        font-size: 18px;
+    }
+    .list .tracktime {
+        font-size: 14px;
+        
+    }
+    .tab-view .nav-tabs .nav-link {
+        padding: .6rem 1rem;
+        font-size: 17px;
+    }
+    .boxview .box {
+        width: 16.6%;
+        margin-bottom: 30px;
+    }
+    .boxview .box .title{
+        font-size: 14px;
+        padding-top: 20px;
+    }
+    .conent-box .heading{
+        font-size: 36px;
+        padding: 0px;
+    }
+    
+ }
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) { 
+
+    height: 100px;
+    .tab-view .nav-tabs .nav-link {
+        padding: .6rem 1rem;
+        font-size: 15px;
+    }
+    .player{
+        padding-bottom: 20px;
+    }
+    .controls-list li.volume-level a{
+        height: auto;
+        width: 70px;
+    }
+    .controls-list li.volume-level a .progress{
+        height: 2px;
+    }
+    .player .playbuttons{
+        justify-content: space-between;
+    }
+    .mediainfo .list .title {
+        display: flex;
+    }
+    .mediainfo .list .actions{
+        display: flex;
+    }
+    .controls-list li.volume-off{
+        display: inline;
+    }
+    .controls-list li.volume-down{
+        display: inline;
+    }
+    .controls-list li.volume-up{
+        display: inline;
+    }
+    .controls-list li.volume-level{
+        display: inline;
+    }
+    .player .playbuttons .currenttime{
+        display: block;
+    }
+    .player .playbuttons .endtime{
+        display: block;
+    }
+    .controls-list li a{
+        width: 30px;
+        height: 30px;
+    }
+ }
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) { 
+    .tab-view .nav-tabs .nav-link {
+        padding: .8rem 1rem;
+        font-size: 18px;
+    }
+    .playerbox .controls-list li a{
+        width: 40px;
+        height: 40px;
+    }
+
+
+ }
+}

@@ -1,0 +1,33 @@
+.boxview{
+    display: flex;
+    flex-wrap: wrap;
+
+    .box {
+        display: flex;
+        width: 16.6%;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px;
+    
+        img {
+            width: 75%;
+            height: 65%;
+            border-radius: 18px;
+            -webkit-border-radius: 18px;
+            -moz-border-radius: 18px;
+            -ms-border-radius: 18px;
+            -o-border-radius: 18px;
+        }
+         .title{
+            padding-top: 12px;
+            font-size: 12px;
+        }
+    }
+    .box:hover{
+        cursor: pointer;
+
+        .title{
+            color: #00E5E5;
+        }
+    }
+}

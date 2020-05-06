@@ -1,0 +1,99 @@
+schema {
+  query: RootQueryType
+  mutation: Mutation
+}
+
+type Artist {
+  id: ID
+  firstname: String
+  username: String
+  lastname: String
+  age: Int
+  gender: String
+  image: Image
+}
+
+type CountType {
+  count: Int
+}
+
+type Image {
+  id: ID
+  low: String
+  mid: String
+  high: String
+}
+
+type Mutation {
+  addUser(username: String!, firstname: String!, lastname: String!, age: Int, gender: String, password: String): ReturnObject
+  deleteUser(id: ID!): ReturnObject
+  addPlaylist(title: String!, userId: Int!): ReturnObject
+  addSongToPlaylist(songId: String!, playlistId: String!): ReturnObject
+  deleteSongFromPlaylist(songId: String!, playlistId: String!): ReturnObject
+  playSong(userId: Int!, songId: Int!, playCount: Int!): ReturnObject
+}
+
+type Playlist {
+  id: ID
+  title: String
+  imageid: Int
+  userid: Int
+  songs: [Song]
+  image: Image
+}
+
+type ReturnObject {
+  message: ID
+  success: Boolean
+}
+
+type RootQueryType {
+  user(id: ID): User
+  playlists(id: ID, userId: Int): Playlist
+  images(id: ID): [Image]
+  artists(id: ID): [Artist]
+  mostPlayedsongs(userId: Int): [Song]
+  mostlikedSongs(userId: Int): [Song]
+  newReleaseSongs(pageNumber: Int, pageSize: Int, userId: Int): [Song]
+  songByMood(id: ID, userId: Int): [Song]
+  allmoods: [SongCategories]
+  songsByGenre(genreId: ID, userId: Int): [Song]
+  allGenres: [SongCategories]
+  newReleaseSongsCount: CountType
+  search(searchStr: String, userId: Int): [Song]
+  searchPlayList(searchStr: String, userId: Int): [Playlist]
+}
+
+type Song {
+  id: ID
+  artistid: Int
+  imageid: String
+  duration: Int
+  source: String
+  title: String
+  genreid: String
+  isLiked: Boolean
+  image: Image
+  artist: Artist
+}
+
+type SongCategories {
+  id: ID
+  name: String
+  description: String
+  image: Image
+}
+
+type User {
+  id: ID
+  firstname: String
+  username: String
+  lastname: String
+  age: Int
+  gender: String
+  playlists: [Playlist]
+  image: Image
+  likedsongs: [Song]
+  recentsongs: [Song]
+}
+

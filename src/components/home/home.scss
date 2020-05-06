@@ -1,0 +1,384 @@
+.conent-box{
+    padding: 0px;
+}
+.conent-box .heading{
+    font-size: 28px;
+    font-weight: 500;
+    color: #fff;
+    padding: 10px;
+}
+.conent-box .heading span{
+    font-size: 13px;
+    font-weight: normal;
+    display: block;
+    color: #84888c;
+}
+
+.tab-view .nav-tabs{
+    border-bottom: 1px solid #282828;
+    overflow-x: auto;
+    overflow-y:hidden;
+    flex-wrap: nowrap;
+}
+
+.tab-view{
+    padding: 10px 0px;
+}
+
+.tab-view .nav-tabs .nav-link {
+    padding: 1rem 0.4rem;
+    color: #999;
+    font-size: 14px;
+    font-weight: 500;
+    border-bottom: 1px solid #282828;
+    min-width: 120px;
+    text-align: center;
+}
+.tab-view .nav-tabs .nav-link.active {
+    color: #00E5E5;
+    background-color:#282828;
+    border: 1px solid transparent;
+    border-radius: 10px 10px 0px 0px;
+    -webkit-border-radius: 10px 10px 0px 0px;
+    -moz-border-radius: 10px 10px 0px 0px;
+    -ms-border-radius: 10px 10px 0px 0px;
+    -o-border-radius: 10px 10px 0px 0px;
+}
+.tab-view .nav-tabs .nav-link:hover{
+    border-color: transparent;
+    color: #00E5E5;
+}
+.tab-view .tab-content{
+    padding: 8px;
+    background-color:#282828;
+}
+
+.tab-view .listview{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.tab-view .listview .list{
+    width: 100%;
+    padding: 4px;
+    display: flex;
+    color: #666;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 15px;
+}
+.tab-view .listview .list:hover h3{
+    color: #fff;
+}
+
+.list .thumbnail{
+    width: 80px;
+    height: auto;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+    margin-right: 8px;
+    overflow: hidden;
+}
+.list .thumbnail img{
+    width: 100%;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+    margin-right: 8px;
+    vertical-align: bottom;
+}
+
+.list .title h3{
+    font-size: 15px;
+    font-weight: 600;
+}
+.list .title h3 span{
+    font-size: 12px;
+    display: block;
+    margin-top: 4px;
+    font-weight: normal;
+}
+.list .tracktime{
+    font-size: 12px;
+    text-align: center;
+}
+.list .actions{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.list .actions > div{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.list .actions .fav{
+    cursor: pointer;
+}
+.list .actions .fav:hover i, .list .actions .fav.active i{
+    color: red;
+}
+
+.list .actions .dropdown-item {
+    padding: .25rem 0.5rem;
+    font-size: 13px;
+}
+.list .actions .dropdown-item:hover {
+    background-color: #282828;
+    color: #00E5E5;
+}
+
+
+
+.tab-view  .breadcrumb{
+    background-color: transparent;
+    padding: .50rem 0.2rem;
+    margin-bottom: 0.7rem;
+    font-size: 12px;
+}
+.tab-view  .breadcrumb .breadcrumb-item a{
+    color: #00E5E5;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    display: inline-block;
+    padding-right: .5rem;
+    padding-left: .5rem;
+    color: #6c757d;
+    content: ">";
+}
+
+
+.boxview{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.boxview .box{
+    display: flex;
+    width: 33%;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.boxview .box img{
+    width: 75%;
+    height: 655;
+    border-radius: 18px;
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    -ms-border-radius: 18px;
+    -o-border-radius: 18px;
+}
+.boxview .box .title{
+    padding-top: 12px;
+    font-size: 12px;
+}
+.boxview .box:hover{
+    cursor: pointer;
+}
+.boxview .box:hover .title{
+    color: #00E5E5;
+}
+
+
+
+/************************************************************************/
+
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+header .logo-box{
+    display: flex;
+    align-items: center;
+}
+
+.logo-box .dropdown{
+    padding: 0px 20px;
+}
+
+header .profile{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 20px;
+}
+header .profile .profile-thumb{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    overflow: hidden;
+}
+header .profile .profile-thumb img{
+    width: 100%;
+    height:auto;
+}
+
+header .profile .dropdown{
+    padding: 0px 15px;
+}
+
+#custom-search-input {
+    margin:0;
+    margin-top: 10px;
+    padding: 0;
+}
+
+#custom-search-input .search-query {
+    padding-right: 6px;
+    padding-right: 4px \9;
+    padding-left: 6px;
+    padding-left: 4px \9;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #282828;
+    border: 1px solid #282828;
+}
+
+#custom-search-input button {
+    border: 0;
+    background: none;
+    /** belows styles are working good */
+    padding: 2px 5px;
+    margin-top: 2px;
+    position: relative;
+    left: -28px;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color:#D9230F;
+}
+
+.search-query:focus + button {
+    z-index: 3;   
+}
+
+.main-panel{
+    margin-top: 60px;
+}
+
+
+
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) { }
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    .desktoponly{
+        display: block;
+    }
+    .mobileonly{
+        display: none;
+    }
+    .conent-box{
+        padding: 25px;
+    }
+    .tab-view .tab-content {
+        padding: 20px;
+    }
+    .tab-view .listview .list{
+        width: 48%;        
+       // margin-bottom: 25px;
+    }
+    .list .title h3 {
+        font-size: 18px;
+    }
+    .list .tracktime {
+        font-size: 14px;
+        
+    }
+    .tab-view .nav-tabs .nav-link {
+        padding: .6rem 1rem;
+        font-size: 17px;
+    }
+    .boxview .box {
+        width: 16.6%;
+        margin-bottom: 30px;
+    }
+    .boxview .box .title{
+        font-size: 14px;
+        padding-top: 20px;
+    }
+    .conent-box .heading{
+        font-size: 32px;
+        padding: 0px;
+    }
+    
+ }
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) { 
+    .tab-view .nav-tabs .nav-link {
+        padding: .6rem 1rem;
+        font-size: 15px;
+    }
+    .playerbox{
+        height: 100px;
+    }
+    .playerbox .player{
+        padding-bottom: 20px;
+    }
+    .playerbox .controls-list li.volume-level a{
+        height: auto;
+        width: 70px;
+    }
+    .playerbox .controls-list li.volume-level a .progress{
+        height: 2px;
+    }
+    .playerbox .player .playbuttons{
+        justify-content: space-between;
+    }
+    .playerbox .mediainfo .list .title, .playerbox .mediainfo .list .actions{
+        display: flex;
+    }
+    .playerbox .controls-list li.volume-off, .playerbox .controls-list li.volume-down, .playerbox .controls-list li.volume-up, .playerbox .controls-list li.volume-level{
+        display: inline;
+    }
+    .playerbox .player .playbuttons .currenttime, .playerbox .player .playbuttons .endtime{
+        display: block;
+    }
+    .playerbox .controls-list li a{
+        width: 30px;
+        height: 30px;
+    }
+ }
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) { 
+    .tab-view .nav-tabs .nav-link {
+        padding: .8rem 1rem;
+        font-size: 18px;
+    }
+    .playerbox .controls-list li a{
+        width: 40px;
+        height: 40px;
+    }
+
+
+ }
