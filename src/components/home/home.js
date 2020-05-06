@@ -13,6 +13,7 @@ import {
   getSongsByGenreId, getSongsByMoodId, getSongsByArtistsId
 } from '../../constants/commonFunctions';
 import { moodsQuery, artistsQuery, generQuery } from '../../constants/queries';
+import { loadingActions } from '../../redux';
 
 const Home = (props) => {
   const [activeTab, setActiveTap] = useState('1');
@@ -24,10 +25,10 @@ const Home = (props) => {
   const [moodSongsById, setMoodSongsById] = useState([]);
   const [genreSongsById, setGenreSongsById] = useState([]);
   const [artistsSongsById, setArtistsSongsById] = useState([]);
+  const { selectedGroup, userId } = props;
 
   useEffect(() => {
-    console.log('component call home useeffect first');
-    getNewReleaseSongList({query:`query{newReleaseSongs(pageNumber:1, pageSize: 20, userId:1 ){     
+    getNewReleaseSongList({query:`query{newReleaseSongs(pageNumber:1, pageSize: 20, userId:${userId} ){     
       id,   
       title,  
       duration,
@@ -54,7 +55,7 @@ const Home = (props) => {
     }).catch((error) => {
       console.log('error', error)
     });
-    getTopChartSongList({query:`query{mostlikedSongs(userId:1){     
+    getTopChartSongList({query:`query{mostlikedSongs(userId:${userId}){     
       id,   
       title,  
       isLiked,
@@ -108,11 +109,10 @@ const Home = (props) => {
   const toggle = tab => {
     if (activeTab !== tab) setActiveTap(tab);
   }
-  const { selectedGroup, userId } = props;
-
+  
   const loadSongsByMoodId = (moodId) => {
     getSongsByMoodId({query:`query {     
-      songByMood(id:${moodId}, userId: ${1} ){     
+      songByMood(id:${moodId}, userId: ${userId} ){     
       id,   
       title,
       duration,
@@ -145,15 +145,16 @@ const Home = (props) => {
 
   const loadSongsByGenreId = (id) => {
     getSongsByGenreId({query:`query{ 
-      songsByGenre(genreId:${id}, userId:1){ 
+      songsByGenre(genreId:${id}, userId:${userId}){ 
       id 
           isLiked
       genreid 
-      image{ 
-        low
-        mid
+      image{  
+        low,  
+        mid,  
+        high  
         basepath
-      } 
+      }, 
       duration 
       title 
       source 
@@ -178,7 +179,7 @@ const Home = (props) => {
 
   const loadSongsByArtistsId = (id) => {
     getSongsByArtistsId({query:`query{ 
-      artists(userId:1,id:${id}){
+      artists(userId:${userId},id:${id}){
         id
       firstname
       songs{
@@ -195,11 +196,12 @@ const Home = (props) => {
           id
           title
         },
-        image{ 
-          low
-          mid
+        image{  
+          low,  
+          mid,  
+          high  
           basepath
-        } 
+        }, 
       }  
     } 
   }`
@@ -226,6 +228,11 @@ const Home = (props) => {
     }
     
   },[selectedGroup]);
+
+  const backToTab = () => {
+    loadingActions.selectedGroup({});
+    setActiveTap(activeTab);
+  }
 
   return (
 
@@ -284,7 +291,7 @@ const Home = (props) => {
                 <Row>
                   <Col sm="12">
                     {<PlaylistBreadcrumb items={['Home', 'New Release']} />}
-                    {<SongList list={newReleaseSongList} />}
+                    {<SongList list={newReleaseSongList} userId={userId}/>}
                     {/* {<NewReleaseSongList />} */}
                   </Col>
                 </Row>
@@ -293,7 +300,7 @@ const Home = (props) => {
                 <Row>
                   <Col sm="12">
                     {<PlaylistBreadcrumb items={['Home', 'Top Charts']} />}
-                    {<SongList list={topChartSongList} />}
+                    {<SongList list={topChartSongList} userId={userId}/>}
                     {/* {<TopChartSongList />} */}
                   </Col>
                 </Row>
@@ -303,8 +310,8 @@ const Home = (props) => {
                   <Col sm="12">
                     {selectedGroup.type === 'Moods' ?
                       <>
-                        {<PlaylistBreadcrumb items={['Moods', selectedGroup.payload.name]} />}
-                        {<SongList list={moodSongsById} />}
+                        {<PlaylistBreadcrumb items={['Moods', selectedGroup.payload.name]} back={backToTab} />}
+                        {<SongList list={moodSongsById} userId={userId}/>}
                       </>
                       :
                       <>
@@ -321,8 +328,8 @@ const Home = (props) => {
                   <Col sm="12">
                   {selectedGroup.type === 'Genre' ?
                     <>
-                      {<PlaylistBreadcrumb items={['Genre', selectedGroup.payload.name]} />}
-                      {<SongList list={genreSongsById} />}
+                      {<PlaylistBreadcrumb items={['Genre', selectedGroup.payload.name]} back={backToTab}/>}
+                      {<SongList list={genreSongsById} userId={userId} />}
                     </>
                     :
                     <>
@@ -339,8 +346,8 @@ const Home = (props) => {
                   <Col sm="12">
                   {selectedGroup.type === 'Artists' ?
                     <>
-                      {<PlaylistBreadcrumb items={['Artists', selectedGroup.payload.firstname]} />}
-                      {<SongList list={artistsSongsById} />}
+                      {<PlaylistBreadcrumb items={['Artists', selectedGroup.payload.firstname]} back={backToTab}/>}
+                      {<SongList list={artistsSongsById} userId={userId}/>}
                     </>
                     :
                     <>
@@ -361,6 +368,5 @@ const Home = (props) => {
 }
 const mapStateToProps = state => ({
   selectedGroup: state.utilsReducer.selectedGroup,
-  userId: state.utilsReducer.userDetails.id
 })
 export default connect(mapStateToProps)(Home);

@@ -13,7 +13,8 @@ const { history } = props;
   return (
     <Router history={history}>
         <Switch>
-          <Route path='/' exact={true} render={() => <Login history={history}/>} />
+        <Route path='/' exact={true} render={() => <Login history={history}/>} />
+          <Route path='/login' exact={true} render={() => <Login history={history}/>} />
           <Route path='/dashboard' exact={true} render={() => <Dashboard history={history}/>} />
         </Switch>
     </Router>

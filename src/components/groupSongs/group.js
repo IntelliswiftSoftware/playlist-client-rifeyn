@@ -11,7 +11,7 @@ const Group = (props) => {
     }
     return(
       <div className="box" key={key} onClick={() => handleClick(item)}>
-        <img src={item.image.basepath+item.image.low} />
+        <img src={item.image.basepath+item.image.high} />
         <p className="title">{item.name || item.title || item.firstname}</p>
       </div>
     )

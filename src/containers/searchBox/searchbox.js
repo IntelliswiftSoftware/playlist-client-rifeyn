@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
+import { searchSongs } from '../../constants/commonFunctions';
 
 import InputBase from '@material-ui/core/InputBase';
 
@@ -47,22 +48,68 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Search() {
+export default function Search(props) {
   const classes = useStyles();
+  const { history } = props;
+
+  const [searchsonglist, setSearchsonglist] = useState([])
+  const [searchInput, setSearchInput] = useState([])
+  
+  const searchSong = () => {
+    console.log('onsubmit', searchInput);
+    const userId = 1;
+    searchSongs({
+      query: `query{
+      search(searchStr:"${searchInput}",userId:${userId}){
+      id
+      title
+       image{
+         low
+         mid
+         high
+       },
+       artist{
+        firstname
+        lastname
+        id
+      },  
+      isLiked
+      duration
+      source
+      }
+      }`
+      }).then((response) => {
+          setSearchsonglist(response.data.data.search);
+          props.searchSongs(response.data.data.search);
+    }).catch((error) => {
+      console.log('error',error)
+    });
+  } 
+
+  const onChange = (event) => {
+    setSearchInput(event.target.value);
+  };
+
+  console.log('searchsonglist',searchsonglist);
 
   return (
       <div className={classes.search}>
-          <div className={classes.searchIcon}>
+          <div className={classes.searchIcon} >
               <SearchIcon />
           </div>
-          <InputBase
-              placeholder="Search…"
-              classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-          />
+          {/* <form onSubmit={searchSong}> */}
+            <InputBase
+                placeholder="Search…"
+                onChange={onChange}
+                classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+            />
+            <button onClick={searchSong}>search</button>
+          {/* </form> */}
+         
       </div>
   );
 }

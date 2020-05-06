@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-undef */
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -30,12 +31,14 @@ import ImageIcon from '@material-ui/icons/Image';
 
 
 import Search from '../searchBox';
+import SearchResult from '../../components/searchResult';
 import UsetProfile from '../userProfile';
 import Home from '../../components/home';
 import PlyalistLibrary from '../../components/PlayListLibrary/';
 import LikedSongs from '../../components/likedSongs';
 import RecentlyPlayedSong from '../../components/RecentlyPlayedSong';
 import RiFeyn from '../../images/RiFeyn Final-01.png';
+import { loadingActions } from '../../redux';
 
 const drawerWidth = 220;
 
@@ -88,18 +91,24 @@ const useStyles = makeStyles((theme) => ({
 
 const ResponsiveDrawer = (props) => {
   const { window } = props;
+  const { history, userDetails } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  let [MenuComponent, setMenus] = React.useState(<Home />);
+  let [MenuComponent, setMenus] = React.useState(<Home userId={userDetails.id}/>);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   const setComponent = (name) => {
+    loadingActions.selectedGroup({});
     setMobileOpen(false);
     setMenus(name);
+  }
+
+  const searchSongs = (searchResult) => {
+    setMenus(<SearchResult list={searchResult} />);
   }
 
   const drawer = (
@@ -115,13 +124,13 @@ const ResponsiveDrawer = (props) => {
       <Divider />
       <List>
           {/* {['Home', 'Playlist Library', 'Songs Library'].map((text, index) => ( */}
-            <ListItem button key='Home' onClick={() => setComponent(<Home />)}>
+            <ListItem button key='Home' onClick={() => setComponent(<Home userId={userDetails.id}/>)}>
               <Tooltip disableFocusListener title="Home">
                 <ListItemIcon><HomeIcon style={{ color: '#ffffff' }}/></ListItemIcon>
               </Tooltip>
               <ListItemText primary='Home' />
             </ListItem>
-            <ListItem button onClick={() => setComponent(<PlyalistLibrary />)}>
+            <ListItem button onClick={() => setComponent(<PlyalistLibrary userId={userDetails.id}/>)}>
               <ListItemIcon>
               <PlaylistPlayIcon style={{ color: '#ffffff' }}/>
               </ListItemIcon>
@@ -134,19 +143,19 @@ const ResponsiveDrawer = (props) => {
               <ListItemText primary='Song Library' />
             </ListItem>
               <List className={classes.subMenu} component="div" disablePadding>
-                <ListItem button className={classes.nested} onClick={() => setComponent(<LikedSongs />)}>
+                <ListItem button className={classes.nested} onClick={() => setComponent(<LikedSongs userId={userDetails.id}/>)}>
                   <ListItemIcon>
                     <FavoriteIcon style={{ color: '#ffffff' }}/>
                   </ListItemIcon>
                   <ListItemText primary="Liked Songs" />
                 </ListItem>
-                <ListItem button className={classes.nested} onClick={() => setComponent(<RecentlyPlayedSong />)}>
+                <ListItem button className={classes.nested} onClick={() => setComponent(<RecentlyPlayedSong userId={userDetails.id}/>)}>
                   <ListItemIcon>
                     <HistoryIcon style={{ color: '#ffffff' }}/>
                   </ListItemIcon>
                   <ListItemText primary="Recently Played" />
                 </ListItem>
-              </List>
+              </List> 
           {/* ))} */}
         </List>
     </div>
@@ -169,8 +178,8 @@ const ResponsiveDrawer = (props) => {
           >
             <MenuIcon />
           </IconButton>
-          <Search />
-          <UsetProfile />
+          <Search  history={history} searchSongs={searchSongs}/>
+          <UsetProfile history={history} />
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
@@ -221,4 +230,7 @@ ResponsiveDrawer.propTypes = {
   window: PropTypes.func,
 };
 
-export default ResponsiveDrawer;
+const mapStateToProps = state => ({
+  userDetails: state.utilsReducer.userDetails
+})
+export default connect(mapStateToProps)(ResponsiveDrawer);

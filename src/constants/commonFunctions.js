@@ -70,6 +70,9 @@ export const addToPlayedSongs = (data) => {
 export const addSongInPlaylists = (data) => {
   return PostRequest(URL, header, data);
 }
-
-
-
+export const searchSongs = (data) => {
+  return PostRequest(URL, header, data);
+}
+export const getSongsByPlaylistId = (data) => {
+  return PostRequest(URL, header, data);
+}

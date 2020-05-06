@@ -16,13 +16,14 @@ class RecentlyPlayedSong extends React.Component {
   }
 
   componentDidMount() {
-    this.loadPlaylistData(1);
+    const {userId} = this.props;
+    this.loadPlaylistData(userId);
   }
 
   loadPlaylistData = (userId) => {
     getUserLikedPlayList({
       query: `query {  
-        user(id:1) { 
+        user(id:${userId}) { 
           id
           recentsongs{
             id

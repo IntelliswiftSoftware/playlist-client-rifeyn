@@ -29,7 +29,7 @@ const Footer = (props) => {
       </div>
       <div className="mediainfo col-3">
         <div className="list no-gutters">
-          <div className="thumbnail"><img src={playedSong.image ? playedSong.image.basepath+playedSong.image.low : crop} /></div>
+          <div className="thumbnail"><img src={playedSong.image ? playedSong.image.basepath+playedSong.image.high : crop} /></div>
           <div className="title col-6">
             <h3>{playedSong.title}<span>{playedSong.artist ? playedSong.artist.firstname: ''}</span></h3>
           </div>

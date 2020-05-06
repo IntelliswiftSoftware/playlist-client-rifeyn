@@ -20,6 +20,7 @@ const ArtistSongs = () => {
                       low
                       mid
                       high
+                      basepath
                     }
                     gender
                   }     

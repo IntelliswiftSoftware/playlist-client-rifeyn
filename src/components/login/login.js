@@ -3,30 +3,11 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-//import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { login } from '../../constants/commonFunctions';
 import { loadingActions } from '../../redux';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      <span style = {{color: "gray"}}>{'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}</span>
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -160,11 +141,6 @@ const Login = (props) => {
             }}
             onChange = {(e)=> getData(e, 'password')}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-            style = {{color: "gray"}}
-          />
           <Button
             type="submit"
             fullWidth
@@ -174,23 +150,8 @@ const Login = (props) => {
           >
             <span style = {{color: "lightgray"}}>Sign In</span>
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-              <span style = {{color: "gray"}}>Forgot password?</span>
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-              <span style = {{color: "gray"}}>{"Don't have an account? Sign Up"}</span>
-              </Link>
-            </Grid>
-          </Grid>
         </div>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
     </Container>
   );
 }

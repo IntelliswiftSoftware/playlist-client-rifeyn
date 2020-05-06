@@ -3,13 +3,17 @@ import './songList.scss';
 import Song from './song';
 
 const SongList = (props) =>  {
-  const { list } = props;
+  const { list,userId } = props;
 
     return (
-      <div className="listview" >
-        {(list || []).map((item, index) => (
-            <Song item={item} key={index} />
+      <div className="listview">
+        
+        {list.length ?
+         (list || []).map((item, index) => (
+            <Song item={item} key={index} userId={userId}/>
           ))
+          :
+          'Loading...'
         }
       </div>
     )

@@ -7,7 +7,7 @@ export const newReleaseSongListQuery = `query{newReleaseSongs(pageNumber:1, page
       low,  
       mid,  
       high  
-     
+      basepath
     },  
      
     artist{  
@@ -30,7 +30,7 @@ export const topChartQuery = `query{mostlikedSongs(userId:1){
       low,  
       mid,  
       high  
-     
+      basepath
     },  
      
     artist{  
@@ -38,7 +38,10 @@ export const topChartQuery = `query{mostlikedSongs(userId:1){
       lastname,  
       gender,  
       image{  
-        low  
+        low
+        mid
+        high
+        basepath
       }  
     }     
     }                  

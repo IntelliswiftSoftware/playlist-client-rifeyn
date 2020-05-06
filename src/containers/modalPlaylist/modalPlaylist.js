@@ -11,13 +11,12 @@ const ModalPlaylist = (props) => {
     toggle,
     modal,
     song,
+    flag,
+    userId
   } = props;
 
-  console.log('enter in modalPlaylist',song.playlists);
-
   useEffect(() => {
-    console.log('enter in useeffect')
-    loadPlaylistData(1);
+    loadPlaylistData(userId);
   }, [])
 
   const loadPlaylistData = (userId) => {
@@ -40,51 +39,74 @@ const ModalPlaylist = (props) => {
       if (response) {
         
         let userPlaylist = response.data.data.user.playlists;
-        console.log('in response playlists',song.playlists);
-        let newlist = userPlaylist.filter(item => !song.playlists.find(obj => obj.id === item.id));
-        console.log('userplaylist',newlist);
-
+        let newlist = [];
+        if(flag === 'add') {
+          newlist = userPlaylist.filter(item => !song.playlists.find(obj => obj.id === item.id));
+        } else {
+          newlist = userPlaylist.filter(item => song.playlists.find(obj => obj.id === item.id));
+        }
         setUserPlaylists(newlist);
       }
     }).catch((error) => {
       console.log('error', error)
     });
     
-    console.log('userplaylist',userPlaylists);
   }
 
   const handleChanage = (id, e) => {
-    console.log('enter in halechange',id);
-    const playlist = selectedPlaylist;
+      const playlist = selectedPlaylist;
     if(e.target.checked){
-      playlist.push(id);
+      playlist.push(Number(id));
     } else {
-      playlist.splice(playlist.indexOf(id), 1);
+      playlist.splice(playlist.indexOf(Number(id)), 1);
     }
     setSelectedPlaylist(playlist);
   }
 
   const addToPlayList = () => {
-    addSongsToPlaylist(song.id, selectedPlaylist.toString());
-    toggle();
+    addSongsToPlaylist((song.id).toString(), selectedPlaylist.toString());
   }
 
-  const addSongsToPlaylist =  (songIds, playlistIds) => {
+  const addSongsToPlaylist =  (songId, playlistIds) => {
     addSongInPlaylists({
       query: `mutation{
-        addSongToPlaylist(songId: "${songIds}", playlistId:"${playlistIds}"){
+        addSongToPlaylist(songId: "${songId}", playlistId:"${playlistIds}"){
           message
           success
         }
       }`
       }).then((response) => {
+        if(response) {
+          toggle();
+        }
     }).catch((error) => {
       console.log('error',error)
     });
     
   }
 
+  const deleteToPlayList = () => {
+    deleteSongsToPlaylist((song.id).toString(), selectedPlaylist.toString())
+  }
 
+  const deleteSongsToPlaylist =  (songId, playlistIds) => {
+    addSongInPlaylists({
+      query: `mutation{    
+        deleteSongFromPlaylist(songId:"${songId}", playlistId:"${playlistIds}"){   
+        message  
+        success    
+      }   
+    }`
+      }).then((response) => {
+        if(response) {
+          toggle();
+        }
+    }).catch((error) => {
+      console.log('error',error)
+    });
+    
+  }
+  
   return (
     <div className='createNewPlaylist'>
       <Modal isOpen={modal} toggle={() => toggle(song)} className='createmodal'>
@@ -102,7 +124,11 @@ const ModalPlaylist = (props) => {
               ))}
             </div>
             <div className='margin17'>
-              <Button onClick={addToPlayList}>Add</Button>{' '}
+              {flag === 'add' ?
+                <Button onClick={addToPlayList}>Add</Button>
+                :
+                <Button onClick={deleteToPlayList}>Delete</Button>
+              }{' '}
               <Button onClick={() => toggle(song)}>Cancel</Button>
             </div>
           </div>
