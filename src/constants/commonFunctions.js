@@ -76,3 +76,6 @@ export const searchSongs = (data) => {
 export const getSongsByPlaylistId = (data) => {
   return PostRequest(URL, header, data);
 }
+export const deleteUserPlayList = (data) => {
+  return PostRequest(URL, header, data);
+}

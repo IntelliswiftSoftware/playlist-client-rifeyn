@@ -9,13 +9,13 @@ import ModalPlaylist from '../../containers/modalPlaylist';
 import crop from '../../images/crop.jpg';
 
 const Song = (props) => {
-    
+  
+  const { item, key, userId } = props;
   const [openPlaylistModal, setOpenPlaylistModal] = useState(false);
   const [operationSong, setoperationSong] = useState({});
   const [oprationFlag, setoprationFlag] = useState('');
-  
-  const [liked, setLiked] = useState(false);
-  const { item, key, userId } = props;
+  const [liked, setLiked] = useState(item.isLiked);
+
 
   const toggle = (song, flag) => {
     setOpenPlaylistModal(!openPlaylistModal);
@@ -40,21 +40,38 @@ const Song = (props) => {
     }
 
     const songLiked = (item) => {
-      addToPlayedSongs({
-        query: `mutation{ 
-          likeSong(userId:${userId},songId:${item.id}){
-           message
-            success
-          }
-        }`
-        }).then((response) => {
-          if(response) {
-            setLiked(true);
-          }
-      }).catch((error) => {
-        console.log('error',error)
-      });
+      if(liked) {
+        addToPlayedSongs({
+          query: `mutation{
+            unlikeSong(songId:${item.id},userId:${userId}){
+              success
+              message
+            }
+          }`
+          }).then((response) => {
+            if(response) {
+              setLiked(false);
+            }
+        }).catch((error) => {
+          console.log('error',error)
+        });
+      } else {
+        addToPlayedSongs({
+          query: `mutation{ 
+            likeSong(userId:${userId},songId:${item.id}){
+            message
+              success
+            }
+          }`
+          }).then((response) => {
+            if(response) {
+              setLiked(true);
+            }
+        }).catch((error) => {
+          console.log('error',error)
+        });
     }
+  }
     
     return (
         <div className="list no-gutters" key= {key}>
@@ -65,7 +82,7 @@ const Song = (props) => {
             <div className="tracktime col-2">{item.duration}</div>
             <div className="actions col-3">
               <div className="fav active">
-                <FavoriteIcon style={{ color: item.isLiked || liked ? '#8e2929' : '#ffffff' }} onClick={() => songLiked(item)} />
+                <FavoriteIcon style={{ color: liked ? '#8e2929' : '#ffffff' }} onClick={() => songLiked(item)} />
               </div>
               <div className="add">
                 <QueueIcon style={{ color: '#ffffff' }} onClick={(e) => toggle(item, 'add')}/>

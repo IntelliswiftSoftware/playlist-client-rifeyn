@@ -12,7 +12,7 @@ import RiFeyn from '../../images/RiFeyn Final-01.png';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(20),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -36,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
   login: {
     backgroundColor: '#282828',
     color: '#ffffff',
+  },
+  contentPadding: {
+    paddingBottom: '47px'
   },
   root: {
     '& label.Mui-focused': {
@@ -102,14 +105,14 @@ const Login = (props) => {
         <Typography component="h1" variant="h5">
         <span style = {{color: "lightgray"}}>Sign in</span>
         </Typography>
-        <div>
+        <div className={classes.content}>
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="Username"
             name="email"
             autoComplete="email"
             autoFocus

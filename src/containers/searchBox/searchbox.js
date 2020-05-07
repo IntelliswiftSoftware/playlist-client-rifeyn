@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import { searchSongs } from '../../constants/commonFunctions';
 
@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: theme.spacing(3),
       width: 'auto',
     },
+    paddingLeft: '0px !imporatant',
   },
   // searchIcon: {
   //   padding: theme.spacing(0, 2),
@@ -54,7 +55,7 @@ export default function Search(props) {
 
   const [searchsonglist, setSearchsonglist] = useState([])
   const [searchInput, setSearchInput] = useState([])
-  
+
   const searchSong = () => {
     console.log('onsubmit', searchInput);
     const userId = 1;
@@ -73,57 +74,56 @@ export default function Search(props) {
         firstname
         lastname
         id
-      },  
+      },
+      playlists{
+        id
+        title
+      },
       isLiked
       duration
       source
       }
       }`
-      }).then((response) => {
-          setSearchsonglist(response.data.data.search);
-          if(response.data.data.search.length > 0) {
-            props.searchSongs(response.data.data.search);
-          }else {
-            props.searchSongs(response.data.data.search, 'No Record Found');
-          }
+    }).then((response) => {
+      setSearchsonglist(response.data.data.search);
+      if (response.data.data.search.length > 0) {
+        props.searchSongs(response.data.data.search);
+      } else {
+        props.searchSongs(response.data.data.search, 'No Record Found');
+      }
     }).catch((error) => {
-      console.log('error',error)
+      console.log('error', error)
     });
-  } 
+  }
 
   const onChange = (event) => {
     setSearchInput(event.target.value);
   };
-
-  console.log('searchsonglist',searchsonglist);
-
+    const buttonStyles = {
+      position: 'absolute',
+      marginLeft: '-40px',
+      marginTop: '-5px'
+    }
   return (
-      <div className={classes.search}>
-          {/* <div className={classes.searchIcon} >
-              <SearchIcon />
-          </div> */}
-          {/* <form onSubmit={searchSong}> */}
-            <InputBase
-                placeholder="Search…"
-                onChange={onChange}
-                classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
-                }}
-                inputProps={{ 'aria-label': 'search' }}
-            />
-             <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                edge="start"
-                onClick={searchSong}
-                //className={classes.menuButton}
-              >
-                <SearchIcon />
-              </IconButton>
-            {/* <button onClick={searchSong}>search</button> */}
-          {/* </form> */}
-         
-      </div>
+    <div className={classes.search} style={{ maxHeight: 50}}>
+      <InputBase
+        placeholder="Search…"
+        onChange={onChange}
+        classes={{
+          root: classes.inputRoot,
+          input: classes.inputInput,
+        }}
+        inputProps={{ 'aria-label': 'search' }}
+      />
+      <IconButton
+        color="inherit"
+        aria-label="open drawer"
+        edge="start"
+        onClick={searchSong}
+        style={buttonStyles}
+      >
+        <SearchIcon />
+      </IconButton>
+    </div>
   );
 }

@@ -8,6 +8,7 @@ import { getUserLikedPlayList } from '../../constants/commonFunctions';
 import SongList from '../songList';
 
 const SearchResult = (props) => {
+  const {userId} = props;
 
     return (
       <div className="conent-box col-lg-12">
@@ -30,7 +31,7 @@ const SearchResult = (props) => {
                   <Row>
                     <Col sm="12">
                       {/* {<PlaylistBreadcrumb items={['SongList Library', 'Recently Played Song']} />} */}
-                      <SongList list={props.list} message={props.meassage} />
+                      <SongList list={props.list} message={props.meassage} userId={userId}/>
                     </Col>
                   </Row>
                 </TabPane>

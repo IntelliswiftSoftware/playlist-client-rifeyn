@@ -22,7 +22,7 @@ const ModalPlaylist = (props) => {
   const [selectedPlaylist, setSelectedPlaylist] = useState([]);
   const {
     toggle,
-    modal,
+    modal,  
     song,
     flag,
     userId
@@ -51,7 +51,6 @@ const ModalPlaylist = (props) => {
        }`
     }).then((response) => {
       if (response) {
-        
         let userPlaylist = response.data.data.user.playlists;
         let newlist = [];
         if(flag === 'add') {
@@ -66,7 +65,7 @@ const ModalPlaylist = (props) => {
     });
     
   }
-
+  
   const handleChanage = (id, e) => {
       const playlist = selectedPlaylist;
     if(e.target.checked){
@@ -126,7 +125,7 @@ const ModalPlaylist = (props) => {
       <Modal isOpen={modal} toggle={() => toggle(song)} className='createmodal'>
         <ModalBody>
           <div>
-            <h5>Your Playlist</h5>
+            <h5>Your Playlists</h5>
             <div className='margin17'>
               {(userPlaylists || []).map((item, index) => (
                     <FormGroup row>

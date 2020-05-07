@@ -7,7 +7,7 @@ import Group from '../../components/groupSongs/group';
 import createNewImg from '../../images/ic_library_add_24px@2x.png';
 
 import PlaylistBreadcrumb from '../../containers/breadcrumb';
-import { getUserPlayList, createUserPlayList, getSongsByPlaylistId } from '../../constants/commonFunctions';
+import { getUserPlayList, createUserPlayList, getSongsByPlaylistId, deleteUserPlayList } from '../../constants/commonFunctions';
 import ModalCreateNew from '../../containers/modalCreateNew';
 import SongList from '../songList';
 import { loadingActions } from '../../redux';
@@ -127,6 +127,23 @@ const PlayListLibraby = (props) => {
     });
   }
 
+  const deletePlaylist = (playlistId) => {
+    deleteUserPlayList({
+      query: `mutation{
+        deletePlaylist(playlistId:${playlistId},userId:${userId}){
+          success
+          message
+        }
+      }`
+    }).then((response) => {
+      if (response) {
+        loadPlaylistData(1);
+      }
+    }).catch((error) => {
+      console.log('error', error)
+    });
+  }
+
   return (
     <div className="conent-box col-lg-12">
       <h1 className="heading">Playlist Library
@@ -158,14 +175,14 @@ const PlayListLibraby = (props) => {
                       <>
                         {<PlaylistBreadcrumb items={['Playlist Library', 'Your Playlist']} />}
                         <div className="boxview">
-                          <div className="box" onClick={createNewPlayList}>
+                          <div style={{ minWidth: 150 }} className="box" onClick={createNewPlayList}>
                             <div style={{ height: '65%', width: '75%', background: '#121212', borderRadius: '18px' }}>
                               <img src={createNewImg} style={{ margin: '17px' }} />
                             </div>
                             <p className="title">{'Create New'}</p>
                           </div>
                           {(playlists || []).map((item, index) => (
-                            <Group item={item} key={index} type={'playlist'} />
+                            <Group item={item} key={index} type={'playlist'} deleteFlag={true} deleteGroup={deletePlaylist}/>
                           ))}
                         </div>
                       </>}
