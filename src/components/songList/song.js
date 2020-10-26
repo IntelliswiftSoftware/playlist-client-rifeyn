@@ -77,7 +77,7 @@ const Song = (props) => {
         <div className="list no-gutters" key= {key}>
             <div className="thumbnail"><img src={item.image ? item.image.basepath+item.image.high: crop} /></div>
             <div className="title col-5" onClick={() => playSong(item)}>
-              <h3>{item.title}<span>{item.artist.firstname}</span></h3>
+              <h3>{item.title}<span>{item.firstname}</span></h3>
             </div>
             <div className="tracktime col-2">{item.duration}</div>
             <div className="actions col-3">
